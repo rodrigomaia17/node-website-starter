@@ -1,0 +1,33 @@
+{
+    "name": "new-site",
+    "version": "0.0.0",
+    "private": true,
+    "dependencies": {
+        "express": "~3.4.0"
+    },
+    "devDependencies": {
+        "dalek-cli": "0.0.5",
+        "dalekjs": "0.0.9",
+        "js-beautify": "^1.5.10",
+        "jshint": "^2.8.0",
+        "stylus": "latest",
+        "jade": "latest",
+        "browserify": "latest",
+        "watch": "latest",
+        "parallelshell": "latest"
+    },
+    "engines": {
+        "node": ">=0.8.0",
+        "npm": "1.2.x"
+    },
+    "scripts": {
+        "pretest": "npm run beautify && npm run hint",
+        "ftest": "$(npm bin)/dalek test/*.js",
+        "start": "node app.js",
+        "hint": "./node_modules/jshint/bin/jshint .",
+        "beautify": "npm run beautify:js && npm run beautify:html",
+        "beautify:js": "git ls-files '**/*.js' | grep -vf .jshintignore | xargs ./node_modules/js-beautify/js/bin/js-beautify.js -s 2 -r -j --good-stuff",
+        "beautify:css": "git ls-files '**/*.css' | grep -vf .jshintignore | xargs ./node_modules/js-beautify/js/bin/css-beautify.js -s 2 -r",
+        "beautify:html": "git ls-files '**/*.html' | grep -vf .jshintignore | xargs ./node_modules/js-beautify/js/bin/html-beautify.js -s 2 -r"
+    }
+}
