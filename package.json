@@ -14,13 +14,27 @@
         "jade": "latest",
         "browserify": "latest",
         "watch": "latest",
-        "parallelshell": "latest"
+        "parallelshell": "latest",
+        "rimraf": "latest",
+        "ncp": "latest",
+        "livereload": "latest"
     },
     "engines": {
         "node": ">=0.8.0",
         "npm": "1.2.x"
     },
     "scripts": {
+        "clean": "rimraf public/*",
+        "prebuild": "npm run clean -s && ncp assets/other/ public/",
+        "build": "npm run build:js && npm run build:css && npm run build:html",
+        "build:watch": "parallelshell 'npm run live-reload -s' 'npm run watch:js' 'npm run watch:css' 'npm run watch:html'",
+        "build:css": "stylus assets/css/main.styl > public/main.css",
+        "watch:css": "watch 'npm run build:css' assets/css/",
+        "build:js": "browserify assets/js/main.js > public/main.js",
+        "watch:js": "watch 'npm run build:js' assets/js/",
+        "build:html": "$(npm bin)/jade assets/html -o public",
+        "watch:html": "watch 'npm run build:html' assets/html",
+        "live-reload": "$(npm bin)/livereload --port 9091 public/",
         "pretest": "npm run beautify && npm run hint",
         "ftest": "$(npm bin)/dalek test/*.js",
         "start": "node app.js",
