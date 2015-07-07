@@ -6,6 +6,7 @@
         "express": "~3.4.0"
     },
     "devDependencies": {
+        "bower": "latest",
         "dalek-cli": "0.0.5",
         "dalekjs": "0.0.9",
         "js-beautify": "^1.5.10",
@@ -25,8 +26,10 @@
     },
     "scripts": {
         "clean": "rimraf public/*",
+        "postinstall": "$(npm bin)/bower install",
         "prebuild": "npm run clean -s && ncp assets/other/ public/",
         "build": "npm run build:js && npm run build:css && npm run build:html",
+        "watch": "parallelshell 'npm run watch:js' 'npm run watch:css' 'npm run watch:html'",
         "build:watch": "parallelshell 'npm run live-reload -s' 'npm run watch:js' 'npm run watch:css' 'npm run watch:html'",
         "build:css": "stylus assets/css/main.styl > public/main.css",
         "watch:css": "watch 'npm run build:css' assets/css/",
@@ -34,7 +37,8 @@
         "watch:js": "watch 'npm run build:js' assets/js/",
         "build:html": "$(npm bin)/jade assets/html -o public",
         "watch:html": "watch 'npm run build:html' assets/html",
-        "live-reload": "$(npm bin)/livereload --port 9091 public/",
+        "live-reload": "$(npm bin)/livereload public/ --port 9091",
+        "dev": " parallelshell 'npm start' 'npm run watch -s'",
         "pretest": "npm run beautify && npm run hint",
         "ftest": "$(npm bin)/dalek test/*.js",
         "start": "node app.js",
