@@ -1,51 +1,50 @@
 {
-    "name": "new-site",
-    "version": "0.0.0",
-    "private": true,
-    "dependencies": {
-        "express": "~3.4.0"
-    },
-    "devDependencies": {
-        "bower": "latest",
-        "dalek-cli": "0.0.5",
-        "dalekjs": "0.0.9",
-        "js-beautify": "^1.5.10",
-        "jshint": "^2.8.0",
-        "stylus": "latest",
-        "jade": "latest",
-        "browserify": "latest",
-        "watch": "latest",
-        "parallelshell": "latest",
-        "rimraf": "latest",
-        "ncp": "latest",
-        "livereload": "latest"
-    },
-    "engines": {
-        "node": ">=0.8.0",
-        "npm": "1.2.x"
-    },
-    "scripts": {
-        "clean": "rimraf public/*",
-        "postinstall": "$(npm bin)/bower install",
-        "prebuild": "npm run clean -s && ncp assets/other/ public/",
-        "build": "npm run build:js && npm run build:css && npm run build:html",
-        "watch": "parallelshell 'npm run watch:js' 'npm run watch:css' 'npm run watch:html'",
-        "build:watch": "parallelshell 'npm run live-reload -s' 'npm run watch:js' 'npm run watch:css' 'npm run watch:html'",
-        "build:css": "stylus assets/css/main.styl > public/main.css",
-        "watch:css": "watch 'npm run build:css' assets/css/",
-        "build:js": "browserify assets/js/main.js > public/main.js",
-        "watch:js": "watch 'npm run build:js' assets/js/",
-        "build:html": "$(npm bin)/jade assets/html -o public",
-        "watch:html": "watch 'npm run build:html' assets/html",
-        "live-reload": "$(npm bin)/livereload public/ --port 9091",
-        "dev": " parallelshell 'npm start' 'npm run watch -s'",
-        "pretest": "npm run beautify && npm run hint",
-        "ftest": "$(npm bin)/dalek test/*.js",
-        "start": "node app.js",
-        "hint": "./node_modules/jshint/bin/jshint .",
-        "beautify": "npm run beautify:js && npm run beautify:html",
-        "beautify:js": "git ls-files '**/*.js' | grep -vf .jshintignore | xargs ./node_modules/js-beautify/js/bin/js-beautify.js -s 2 -r -j --good-stuff",
-        "beautify:css": "git ls-files '**/*.css' | grep -vf .jshintignore | xargs ./node_modules/js-beautify/js/bin/css-beautify.js -s 2 -r",
-        "beautify:html": "git ls-files '**/*.html' | grep -vf .jshintignore | xargs ./node_modules/js-beautify/js/bin/html-beautify.js -s 2 -r"
-    }
+  "name": "new-site",
+  "version": "0.0.0",
+  "private": true,
+  "dependencies": {
+    "express": "~3.4.0",
+    "jquery": "^2.1.4"
+  },
+  "devDependencies": {
+    "dalek-cli": "0.0.5",
+    "dalekjs": "0.0.9",
+    "js-beautify": "^1.5.10",
+    "jshint": "^2.8.0",
+    "stylus": "latest",
+    "jade": "latest",
+    "browserify": "latest",
+    "watch": "latest",
+    "parallelshell": "latest",
+    "rimraf": "latest",
+    "ncp": "latest",
+    "livereload": "latest"
+  },
+  "engines": {
+    "node": ">=0.8.0",
+    "npm": "1.2.x"
+  },
+  "scripts": {
+    "clean": "rimraf public/*",
+    "prebuild": "npm run clean -s && ncp assets/other/ public/",
+    "build": "npm run build:js && npm run build:css && npm run build:html",
+    "watch": "parallelshell 'npm run watch:js' 'npm run watch:css' 'npm run watch:html'",
+    "build:watch": "parallelshell 'npm run live-reload -s' 'npm run watch:js' 'npm run watch:css' 'npm run watch:html'",
+    "build:css": "stylus assets/css -o public --include-css",
+    "watch:css": "watch 'npm run build:css' assets/css/",
+    "build:js": "browserify assets/js/main.js > public/main.js",
+    "watch:js": "watch 'npm run build:js' assets/js/",
+    "build:html": "$(npm bin)/jade assets/html -o public",
+    "watch:html": "watch 'npm run build:html' assets/html",
+    "live-reload": "$(npm bin)/livereload public/ --port 9091",
+    "dev": " parallelshell 'npm start' 'npm run watch -s'",
+    "pretest": "npm run beautify && npm run hint",
+    "ftest": "$(npm bin)/dalek test/*.js",
+    "start": "node app.js",
+    "hint": "./node_modules/jshint/bin/jshint .",
+    "beautify": "npm run beautify:js && npm run beautify:html",
+    "beautify:js": "git ls-files '**/*.js' | grep -vf .jshintignore | xargs ./node_modules/js-beautify/js/bin/js-beautify.js -s 2 -r -j --good-stuff",
+    "beautify:css": "git ls-files '**/*.css' | grep -vf .jshintignore | xargs ./node_modules/js-beautify/js/bin/css-beautify.js -s 2 -r",
+    "beautify:html": "git ls-files '**/*.html' | grep -vf .jshintignore | xargs ./node_modules/js-beautify/js/bin/html-beautify.js -s 2 -r"
+  }
 }
