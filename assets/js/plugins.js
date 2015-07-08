@@ -22,4 +22,5 @@
   }
 }());
 
-var $ = require('jquery')// Place any jQuery/helper plugins in here.
+window.$ = window.jQuery = require('jquery');
+require('bootstrap');

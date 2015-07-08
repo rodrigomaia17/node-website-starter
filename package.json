@@ -4,7 +4,8 @@
   "private": true,
   "dependencies": {
     "express": "~3.4.0",
-    "jquery": "^2.1.4"
+    "jquery": "^2.1.4",
+    "modernizr": "^3.0.0-alpha.4"
   },
   "devDependencies": {
     "dalek-cli": "0.0.5",
