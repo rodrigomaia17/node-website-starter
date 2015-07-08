@@ -18,7 +18,8 @@
     "parallelshell": "latest",
     "rimraf": "latest",
     "ncp": "latest",
-    "livereload": "latest"
+    "livereload": "latest",
+    "uglify-js": "latest"
   },
   "engines": {
     "node": ">=0.8.0",
@@ -32,7 +33,7 @@
     "build:watch": "parallelshell 'npm run live-reload -s' 'npm run watch:js' 'npm run watch:css' 'npm run watch:html'",
     "build:css": "stylus assets/css -o public --include-css",
     "watch:css": "watch 'npm run build:css' assets/css/",
-    "build:js": "browserify assets/js/main.js > public/main.js",
+    "build:js": "browserify assets/js/main.js > public/main.js && browserify assets/js/plugins.js | uglifyjs -c > public/plugins.js",
     "watch:js": "watch 'npm run build:js' assets/js/",
     "build:html": "$(npm bin)/jade assets/html -o public",
     "watch:html": "watch 'npm run build:html' assets/html",

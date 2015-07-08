@@ -22,4 +22,4 @@
   }
 }());
 
-// Place any jQuery/helper plugins in here.
+var $ = require('jquery')// Place any jQuery/helper plugins in here.
