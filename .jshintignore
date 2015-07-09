@@ -1,2 +1,3 @@
-public/js/vendor
+public/
 node_modules/
+assets/js/plugins.js
