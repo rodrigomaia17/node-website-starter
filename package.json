@@ -3,6 +3,7 @@
   "version": "0.0.0",
   "private": true,
   "dependencies": {
+    "bootstrap": "^3.3.5",
     "express": "~3.4.0",
     "forever": "^0.14.2",
     "jquery": "^2.1.4",
