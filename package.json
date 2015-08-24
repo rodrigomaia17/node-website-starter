@@ -5,14 +5,11 @@
   "dependencies": {
     "bootstrap": "^3.3.5",
     "express": "~3.4.0",
-    "forever": "^0.14.2",
     "jquery": "^2.1.4",
     "modernizr": "^3.0.0-alpha.4"
   },
   "devDependencies": {
     "browserify": "latest",
-    "dalek-cli": "0.0.5",
-    "dalekjs": "0.0.9",
     "jade": "latest",
     "js-beautify": "^1.5.10",
     "jshint": "^2.8.0",
@@ -45,10 +42,8 @@
     "live-reload": "$(npm bin)/livereload public/ --port 9091",
     "dev": " parallelshell 'npm start' 'npm run watch -s'",
     "pretest": "npm run hint -s",
-    "ftest": "npm start && $(npm bin)/dalek test/*.func.js && npm stop",
     "test": "$(npm bin)/mocha",
-    "start": "$(npm bin)/forever start --uid prod app.js",
-    "stop": "$(npm bin)/forever stop prod && $(npm bin)/forever cleanlogs",
+    "start": "node app.js",
     "hint": "./node_modules/jshint/bin/jshint ."
   }
 }
